@@ -97,6 +97,8 @@ function initializeMusicPlayer() {
         window.globalAudioPlayer.volume = 0.5;
         window.globalAudioPlayer.preload = 'auto';
         window.globalAudioPlayer.loop = true; // putar berulang terus
+        window.globalAudioPlayer.autoplay = true;
+        window.globalAudioPlayer.playsInline = true;
         // Hapus pengaturan crossOrigin untuk sumber lokal
     }
 
@@ -144,9 +146,11 @@ function initializeMusicPlayer() {
         }
 
         // Pastikan pemutaran dimulai saat ada interaksi pengguna (untuk melewati blokir autoplay)
-        document.addEventListener('pointerdown', () => {
-            tryPlay();
-        }, { once: true });
+        const unlockAudio = () => { tryPlay(); };
+        document.addEventListener('pointerdown', unlockAudio, { once: true });
+        document.addEventListener('click', unlockAudio, { once: true });
+        document.addEventListener('touchstart', unlockAudio, { once: true, passive: true });
+        window.addEventListener('focus', tryPlay);
     }
 
     updateMusicButtonsUI();
