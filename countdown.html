@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siti Hajar Almakki!❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(120, 150, 255, 0.18), transparent 32%),
+                radial-gradient(circle at 78% 14%, rgba(255, 140, 200, 0.18), transparent 32%),
+                radial-gradient(circle at 62% 78%, rgba(110, 210, 255, 0.14), transparent 30%),
+                linear-gradient(180deg, #040714 0%, #0a1230 52%, #02040f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+            color: #e9f0ff;
+        }
+
+        /* Animated background elements */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        /* Starfield effect */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            background: linear-gradient(135deg, #ffd3f4 0%, #b9c6ff 45%, #8fe1ff 85%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            line-height: 1.15;
+            text-shadow: 0 8px 35px rgba(255, 255, 255, 0.08);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #e5ecff;
+            font-weight: 400;
+            margin-bottom: 18px;
+            letter-spacing: 0.6px;
+            line-height: 1.6;
+        }
+
+        .emoji-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            padding: 48px 38px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+            margin-bottom: 42px;
+            border: 2px solid rgba(185, 198, 255, 0.28);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease 0.2s both;
+            backdrop-filter: blur(6px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ffb3e6, #b3c4ff, #8ee2ff);
+        }
+
+        .countdown-label {
+            font-size: 1.15rem;
+            color: #5b4a6f;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .time-unit {
+            background: linear-gradient(160deg, rgba(255, 182, 229, 0.14), rgba(179, 200, 255, 0.16));
+            border-radius: 18px;
+            padding: 22px 14px;
+            border: 2px solid rgba(185, 198, 255, 0.32);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+        }
+
+        .time-unit:hover {
+            transform: translateY(-6px);
+            border-color: rgba(185, 198, 255, 0.7);
+            box-shadow: 0 12px 28px rgba(147, 169, 255, 0.22);
+        }
+
+        .time-unit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #ff6b9d, #b388ff);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .time-unit:hover::before {
+            opacity: 1;
+        }
+
+        .time-value {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff95d6, #b7c4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            color: #6a6a85;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .current-time {
+            font-size: 1.1rem;
+            color: #b388ff;
+            font-weight: 600;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 155, 214, 0.2);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Message Section */
+        .message-section {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(179, 136, 255, 0.08));
+            border-radius: 25px;
+            padding: 35px;
+            border: 2px solid rgba(255, 155, 214, 0.2);
+            margin-bottom: 30px;
+            animation: slideUp 0.8s ease 0.4s both;
+        }
+
+        .message-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #ff6b9d, #b388ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .message-section p {
+            color: #5a3d5c;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Button Section */
+        .button-container {
+            animation: slideUp 0.8s ease 0.6s both;
+        }
+
+        .countdown-button {
+            background: linear-gradient(135deg, #ff8fc8 0%, #9faeff 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 12px 30px rgba(159, 174, 255, 0.28);
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
+            opacity: 0.55;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .countdown-button.active {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
+            box-shadow: 0 16px 38px rgba(159, 174, 255, 0.35);
+        }
+
+        .countdown-button.active:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 45px rgba(255, 107, 157, 0.4);
+        }
+
+        .countdown-button.active:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .button-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button-text i {
+            font-size: 1.3rem;
+            animation: slideRight 0.8s ease 0.6s both;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .waiting-text {
+            color: #b388ff;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* Fireworks Effect */
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 18px;
+            }
+
+            .main-title {
+                font-size: 2.6rem;
+                margin-bottom: 12px;
+            }
+
+            .subtitle {
+                font-size: 1.05rem;
+                margin-bottom: 16px;
+            }
+
+            .emoji-icon {
+                font-size: 2.8rem;
+                margin-bottom: 12px;
+            }
+
+            .countdown-container {
+                padding: 32px 22px;
+                margin-bottom: 28px;
+            }
+
+            .countdown-timer {
+                gap: 10px;
+            }
+
+            .time-unit {
+                padding: 18px 10px;
+            }
+
+            .time-value {
+                font-size: 2.1rem;
+            }
+
+            .time-label {
+                font-size: 0.78rem;
+            }
+
+            .countdown-label {
+                font-size: 1.05rem;
+                margin-bottom: 18px;
+            }
+
+            .countdown-button {
+                padding: 15px 36px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .countdown-timer {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .time-value {
+                font-size: 1.8rem;
+            }
+
+            .countdown-button {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+
+            .message-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            .message-section p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Happy New Year!! Siti Hajar Almakki</h1>
+            <p class="subtitle">Welcome to January 2026, this is your birthday month, it’s just a matter of time now.. </p>
+        </div>
+
+        <div class="countdown-container">
+            <div class="countdown-label">Time Remaining</div>
+            
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            </div>
+
+            <div class="current-time">
+                Current time: <span id="currentTime">--:-- WIB</span>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="countdown-button" id="enterButton" disabled>
+                <span class="button-text">
+                    <span>Enter Special Page</span>
+                    <i class="fas fa-heart"></i>
+                </span>
+            </button>
+            <p class="waiting-text" id="waitingText">⏳ Please wait until the time arrives...</p>
+        </div>
+    </div>
+
+    <script>
+        // Fireworks Effect Class
+        class Fireworks {
+            constructor() {
+                this.container = document.body;
+                this.colors = ['#ff6b9d', '#b388ff', '#7bc6ff', '#ffd166', '#ff3366', '#00d4ff', '#ff00ff', '#ffff00'];
+            }
+
+            createFirework(x, y) {
+                const particleCount = 50;
+                const colors = this.colors;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'firework-particle';
+                    
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const velocity = 5 + Math.random() * 10;
+                    const tx = Math.cos(angle) * velocity * 60;
+                    const ty = Math.sin(angle) * velocity * 60;
+                    
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.setProperty('--tx', tx + 'px');
+                    particle.style.setProperty('--ty', ty + 'px');
+                    particle.style.boxShadow = `0 0 ${5 + Math.random() * 5}px ${particle.style.backgroundColor}`;
+                    particle.style.animation = `explode ${1.5 + Math.random() * 1}s ease-out forwards`;
+                    
+                    this.container.appendChild(particle);
+
+                    // Remove particle after animation
+                    setTimeout(() => particle.remove(), 2500);
+                }
+            }
+
+            burst(x, y, count = 5) {
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        this.createFirework(x, y);
+                    }, i * 100);
+                }
+            }
+
+            randomFireworks(duration = 3000) {
+                const startTime = Date.now();
+                const interval = setInterval(() => {
+                    if (Date.now() - startTime > duration) {
+                        clearInterval(interval);
+                        return;
+                    }
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * (window.innerHeight * 0.7);
+                    this.createFirework(x, y);
+                }, 200);
+            }
+        }
+
+        const fireworks = new Fireworks();
+
+        // Trigger fireworks randomly throughout the page load
+        setTimeout(() => {
+            fireworks.randomFireworks(4000);
+        }, 500);
+
+        // Generate floating emojis
+        const emojis = ['✨', '🌟', '⭐'];
+        const bgAnimation = document.getElementById('bgAnimation');
+
+        for (let i = 0; i < 15; i++) {
+            const emoji = document.createElement('div');
+            emoji.className = 'floating-emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + '%';
+            emoji.style.top = Math.random() * 100 + '%';
+            emoji.style.animationDelay = Math.random() * 6 + 's';
+            emoji.style.fontSize = (Math.random() * 1.5 + 2) + 'rem';
+            emoji.style.zIndex = -1;
+            bgAnimation.appendChild(emoji);
+        }
+
+        // Generate stars
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            bgAnimation.appendChild(star);
+        }
+
+        // Countdown Timer Logic
+        const targetDate = new Date('2026-01-07T00:00:00+07:00').getTime();
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const currentTimeEl = document.getElementById('currentTime');
+        const enterButton = document.getElementById('enterButton');
+        const waitingText = document.getElementById('waitingText');
+
+        function updateCountdown() {
+            // Get current time in Jakarta timezone
+            const now = new Date();
+            const jakartaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
+            const timeLeft = targetDate - jakartaTime.getTime();
+
+            if (timeLeft <= 0) {
+                // Countdown finished
+                daysEl.textContent = '00';
+                hoursEl.textContent = '00';
+                minutesEl.textContent = '00';
+                secondsEl.textContent = '00';
+                
+                enterButton.disabled = false;
+                enterButton.classList.add('active');
+                waitingText.textContent = '🎉 Saatnya perayaan dimulai! Klik tombol di bawah untuk lanjut!';
+                waitingText.style.color = '#ff6b9d';
+                
+                // Trigger fireworks burst
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        const x = Math.random() * window.innerWidth;
+                        const y = Math.random() * (window.innerHeight * 0.7);
+                        fireworks.burst(x, y, 8);
+                    }, i * 150);
+                }
+                
+                enterButton.onclick = () => {
+                    window.location.href = 'index.html';
+                };
+                
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Update display with leading zeros
+            daysEl.textContent = String(days).padStart(2, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+
+            // Update current time
+            const hours24 = String(jakartaTime.getHours()).padStart(2, '0');
+            const mins = String(jakartaTime.getMinutes()).padStart(2, '0');
+            currentTimeEl.textContent = `${hours24}:${mins} WIB`;
+        }
+
+        // Initial update
+        updateCountdown();
+
+        // Update every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
