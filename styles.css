@@ -169,8 +169,12 @@ a {
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+}
+
+.hamburger {
+    margin-right: auto;
 }
 
 .navbar-brand {
@@ -189,6 +193,7 @@ a {
     display: flex;
     gap: 30px;
     list-style: none;
+    margin-left: auto;
 }
 
 .navbar-menu a {
@@ -360,13 +365,51 @@ a {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .navbar-content {
+        padding: 0 15px;
+    }
+    
+    .navbar-menu {
+        gap: 20px;
+    }
+    
+    .container {
+        padding: 30px 15px 120px 15px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .gallery-item {
+        height: 250px;
+    }
+}
+
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .navbar-content {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
     .page-title {
         font-size: 2.5rem;
+        margin-bottom: 15px;
     }
     
     .page-subtitle {
         font-size: 1rem;
+        margin-bottom: 25px;
     }
 
     .hamburger {
@@ -377,15 +420,17 @@ a {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 280px;
+        width: 75vw;
+        max-width: 300px;
         height: 100vh;
         background: var(--white);
         flex-direction: column;
-        padding: 80px 30px 30px;
-        gap: 15px;
+        padding: 60px 20px 30px;
+        gap: 10px;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         transition: right 0.3s ease;
         z-index: 100;
+        overflow-y: auto;
     }
     
     .navbar-menu.active {
@@ -393,110 +438,69 @@ a {
     }
 
     .navbar-menu a {
-        padding: 12px 20px;
-        font-size: 1.1rem;
-        border-radius: 12px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        border-radius: 10px;
         width: 100%;
     }
 
     .container {
-        padding: 30px 15px 120px 15px;
+        padding: 25px 12px 100px 12px;
     }
     
     .main-title {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .nav-buttons {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .nav-card {
-        padding: 25px;
-    }
-    
-    .nav-card-icon {
-        font-size: 2.5rem;
-    }
-    
-    .nav-card-title {
-        font-size: 1.3rem;
-    }
-    
-    .password-box {
-        padding: 30px 20px;
-        max-width: 90%;
-    }
-    
-    .password-title {
         font-size: 1.8rem;
-    }
-    
-    .password-buttons {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-    
-    .password-num-btn {
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-    }
-    
-    .music-player {
-        bottom: 10px;
-        right: 10px;
-        max-width: 250px;
-        padding: 12px;
-    }
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 20px 10px 100px 10px;
-    }
-
-    .navbar-brand {
-        font-size: 1.3rem;
-    }
-
-    .page-title {
-        font-size: 2rem;
-    }
-    
-    .main-title {
-        font-size: 1.7rem;
+        margin-bottom: 10px;
     }
     
     .subtitle {
         font-size: 0.95rem;
+        margin-bottom: 25px;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .nav-card {
+        padding: 20px;
+        border-radius: 15px;
     }
     
     .nav-card-icon {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 10px;
     }
     
     .nav-card-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
     }
     
     .nav-card-desc {
         font-size: 0.85rem;
     }
     
-    .password-input-wrapper {
-        gap: 8px;
+    .password-box {
+        padding: 25px 20px;
+        max-width: 95%;
+        border-radius: 20px;
     }
     
-    .password-digit {
-        width: 45px;
-        height: 50px;
-        font-size: 1.5rem;
+    .password-title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+    
+    .password-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .password-buttons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 20px;
     }
     
     .password-num-btn {
@@ -505,27 +509,576 @@ a {
         font-size: 1.2rem;
     }
     
+    .password-input-wrapper {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .password-digit {
+        width: 40px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
     .password-action-buttons {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
     }
     
     .password-delete-btn,
     .password-submit-btn {
-        width: 100%;
+        flex: 1;
+        padding: 10px;
+        font-size: 0.9rem;
     }
     
     .music-player {
-        max-width: 220px;
-        padding: 10px;
+        bottom: 10px;
+        right: 10px;
+        max-width: 260px;
+        padding: 12px;
     }
     
     .music-header {
         font-size: 0.85rem;
+        margin-bottom: 10px;
     }
     
     .music-btn {
         padding: 10px 12px;
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .game-title {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+    
+    .game-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .game-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 15px;
+        padding: 12px;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 8px;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+        margin-bottom: 3px;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    .levels-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .level-card {
+        padding: 10px;
+        border-radius: 10px;
+    }
+    
+    .level-badge {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .level-icon {
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+    }
+    
+    .level-title {
+        font-size: 0.85rem;
+        margin-bottom: 3px;
+    }
+    
+    .level-reward {
+        font-size: 0.7rem;
+    }
+    
+    .game-content {
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        min-height: 220px;
+    }
+    
+    .content-title {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    
+    .memory-game {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+    }
+    
+    .memory-card {
+        height: 75px;
+    }
+    
+    .memory-card-front,
+    .memory-card-back {
+        font-size: 1.6rem !important;
+    }
+    
+    .quiz-option {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+        border-radius: 8px;
+    }
+    
+    .game-button {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .reset-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .birthday-container {
+        padding: 15px 12px;
+        border-radius: 15px;
+        text-align: center;
+    }
+    
+    .birthday-title {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    
+    .birthday-name {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+    
+    .cake-container {
+        max-width: 200px !important;
+        margin: 0 auto 12px !important;
+    }
+    
+    .birthday-cake-photo {
+        width: 150px !important;
+        height: 150px !important;
+    }
+    
+    .romantic-emoji {
+        font-size: 1.2rem !important;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    
+    .gallery-item {
+        height: 200px;
+        border-radius: 15px;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        padding: 25px 20px;
+    }
+    
+    .message-card {
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .message-title {
+        font-size: 1rem;
+    }
+    
+    .timeline-item {
+        padding: 15px 10px;
+    }
+    
+    .timeline-title {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 600px) {
+    html, body {
+        font-size: 13px;
+    }
+    
+    .navbar {
+        padding: 12px 0;
+        border-bottom: 2px dashed var(--pink-primary);
+    }
+    
+    .navbar-content {
+        padding: 0 8px;
+    }
+
+    .hamburger {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .hamburger span {
+        width: 24px;
+        height: 2.5px;
+    }
+
+    .navbar-menu {
+        width: 85vw;
+        max-width: 280px;
+        padding: 50px 15px 20px;
+        gap: 8px;
+    }
+    
+    .navbar-menu a {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .container {
+        padding: 20px 10px 80px 10px;
+        max-width: 100%;
+    }
+    
+    .main-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .nav-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .nav-card-icon {
+        font-size: 2rem;
+    }
+    
+    .nav-card-title {
+        font-size: 1rem;
+    }
+    
+    .nav-card-desc {
+        font-size: 0.8rem;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .page-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .password-box {
+        padding: 20px 15px;
+        max-width: 98%;
+        border-radius: 15px;
+    }
+    
+    .password-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+    
+    .password-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .password-label {
+        font-size: 0.9rem;
+    }
+    
+    .password-input-wrapper {
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    
+    .password-digit {
+        width: 35px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .password-buttons {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+    
+    .password-num-btn {
+        width: 100%;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .password-action-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .password-delete-btn,
+    .password-submit-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .password-hint {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+    
+    .music-player {
+        bottom: 5px;
+        right: 5px;
+        max-width: 240px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+    
+    .music-header {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .music-header i {
+        font-size: 1rem;
+    }
+    
+    .music-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+    
+    .music-name {
+        font-size: 0.8rem;
+    }
+    
+    .music-controls {
+        margin-top: 8px;
+    }
+    
+    .music-control-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .gallery-item {
+        height: 180px;
+        border-radius: 12px;
+    }
+    
+    .gallery-item h3 {
+        font-size: 0.85rem;
+    }
+    
+    .modal {
+        padding: 20px;
+    }
+    
+    .modal-content {
+        max-width: 98%;
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+    
+    .modal-image {
+        font-size: 4rem;
+    }
+    
+    .modal-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+    
+    .modal-date {
+        font-size: 0.8rem;
+    }
+    
+    .modal-description {
+        font-size: 0.85rem;
+        margin: 10px 0;
+    }
+    
+    .message-card {
+        margin-bottom: 12px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+    
+    .message-icon {
+        font-size: 1.5rem;
+        min-width: 40px;
+    }
+    
+    .message-title {
+        font-size: 0.95rem;
+        margin-bottom: 3px;
+    }
+    
+    .message-time {
+        font-size: 0.75rem;
+    }
+    
+    .message-content {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin: 10px 0;
+    }
+    
+    .message-action-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+    
+    .reaction-counter {
+        font-size: 0.75rem;
+    }
+    
+    .timeline {
+        padding: 20px 0;
+    }
+    
+    .timeline-item {
+        padding: 12px 0 12px 15px;
+        border-left: 3px solid var(--pink-primary);
+    }
+    
+    .timeline-dot {
+        width: 12px;
+        height: 12px;
+        left: -8px;
+    }
+    
+    .timeline-date {
+        margin-bottom: 5px;
+    }
+    
+    .timeline-month {
+        font-size: 0.8rem;
+    }
+    
+    .timeline-year {
+        font-size: 0.75rem;
+    }
+    
+    .timeline-title {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+    .timeline-text {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .journey-section {
+        padding: 20px 15px;
+    }
+    
+    .journey-emoji {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .journey-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .journey-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .game-title {
+        font-size: 1.6rem;
+    }
+    
+    .game-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .level-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+    
+    .level-icon {
+        font-size: 2rem;
+    }
+    
+    .level-title {
+        font-size: 0.95rem;
+    }
+    
+    .level-reward {
+        font-size: 0.8rem;
+    }
+    
+    .game-button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .reset-btn {
+        padding: 8px 12px;
         font-size: 0.8rem;
     }
 }
@@ -2338,6 +2891,197 @@ a {
 @media (max-width: 600px) {
     .game-container, .container {
         padding-bottom: 200px;
+    }
+    
+    .game-title {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    
+    .game-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    
+    .game-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 12px;
+        padding: 10px;
+    }
+    
+    .stat-item {
+        flex: none;
+        min-width: auto;
+        text-align: center;
+        padding: 8px;
+    }
+    
+    .stat-value {
+        font-size: 1.2rem;
+        margin-bottom: 2px;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .levels-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .level-card {
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .level-badge {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .level-icon {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .level-title {
+        font-size: 0.8rem;
+        margin-bottom: 3px;
+    }
+    
+    .level-reward {
+        font-size: 0.65rem;
+    }
+    
+    .game-content {
+        padding: 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        min-height: auto;
+    }
+    
+    .content-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    
+    .memory-game {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+    }
+    
+    .memory-card {
+        aspect-ratio: 1;
+        height: auto;
+        min-height: 60px;
+    }
+    
+    .memory-card-front,
+    .memory-card-back {
+        font-size: 1.4rem !important;
+    }
+    
+    .quiz-option {
+        padding: 10px;
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        word-wrap: break-word;
+    }
+    
+    .game-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .game-button {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .reset-row {
+        margin-top: 5px;
+    }
+    
+    .reset-btn {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+    
+    .popup-modal {
+        padding: 15px;
+    }
+    
+    .popup-content {
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .popup-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .popup-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .popup-text {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .birthday-container {
+        padding: 12px;
+        border-radius: 15px;
+        text-align: center;
+    }
+    
+    .birthday-title {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+    
+    .birthday-name {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .cake-container {
+        max-width: 180px !important;
+        margin: 0 auto 10px !important;
+        position: relative !important;
+    }
+    
+    .birthday-cake-photo {
+        width: 140px !important;
+        height: 140px !important;
+    }
+    
+    .romantic-emoji {
+        font-size: 1.2rem !important;
+    }
+    
+    .birthday-message {
+        font-size: 0.8rem;
     }
 }
 

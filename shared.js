@@ -637,7 +637,7 @@ function initGamePage() {
                 type: "memory",
                 pairs: [
                     { id: 1, emoji: "🥰" },
-                    { id: 2, emoji: "<img src='foto/almakki.jpeg' class='cake-photo'>" },
+                    { id: 2, emoji: "🎂" },
                     { id: 3, emoji: "💕" },
                     { id: 4, emoji: "✨" }
                 ]
@@ -1165,79 +1165,106 @@ function initGamePage() {
         const catchGame = document.getElementById('catchGame');
         const heartsCaughtDisplay = document.getElementById('heartsCaught');
         let heartsCaught = 0;
-        let heartsSpawned = 0;
+        let spawnInterval = null;
         
         if (!catchGame || !heartsCaughtDisplay) return;
         
-        function createHeart() {
-            if (heartsCaught >= level.targetHearts) return;
-            
-            const heart = document.createElement('div');
-            heart.innerHTML = '💖';
-            heart.style.cssText = `
-                position: absolute;
-                font-size: 2.5rem;
-                cursor: pointer;
-                animation: fall 3s linear;
-                left: ${Math.random() * 85}%;
-                top: -50px;
-                user-select: none;
-                z-index: 100;
-                pointer-events: auto;
-            `;
-            
-            // CSS animation for falling
+        // CSS animation for falling
+        if (!document.getElementById('fall-animation')) {
             const styleSheet = document.createElement('style');
+            styleSheet.id = 'fall-animation';
             styleSheet.textContent = `
                 @keyframes fall {
                     from { top: -50px; transform: rotate(0deg); }
                     to { top: 420px; transform: rotate(360deg); }
                 }
             `;
-            if (!document.getElementById('fall-animation')) {
-                styleSheet.id = 'fall-animation';
-                document.head.appendChild(styleSheet);
-            }
+            document.head.appendChild(styleSheet);
+        }
+        
+        function createHeart() {
+            if (heartsCaught >= level.targetHearts) return;
             
-            heart.addEventListener('click', function(e) {
-                e.stopPropagation();
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.style.position = 'absolute';
+            heart.style.fontSize = '2.5rem';
+            heart.style.cursor = 'pointer';
+            heart.style.animation = 'fall 3s linear';
+            heart.style.left = (Math.random() * 85) + '%';
+            heart.style.top = '-50px';
+            heart.style.userSelect = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.pointerEvents = 'auto';
+            heart.style.display = 'block';
+            
+            let isClicked = false;
+            
+            const handleHeartClick = function(e) {
+                if (isClicked) return; // Prevent double click
+                
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                isClicked = true;
+                
                 playGameSound('click');
+                
+                // Disable further clicks on this heart
+                heart.style.pointerEvents = 'none';
                 heart.style.animation = 'none';
+                heart.style.transition = 'all 0.3s ease';
                 heart.style.transform = 'scale(1.5)';
                 heart.style.opacity = '0';
-                heart.style.transition = 'all 0.3s ease';
                 
                 heartsCaught++;
                 heartsCaughtDisplay.textContent = `${heartsCaught}/${level.targetHearts}`;
                 addScore(10);
                 
-                setTimeout(() => heart.remove(), 300);
+                setTimeout(() => {
+                    if (heart.parentNode === catchGame) {
+                        catchGame.removeChild(heart);
+                    }
+                }, 300);
                 
                 if (heartsCaught >= level.targetHearts) {
-                    clearInterval(spawnInterval);
+                    if (spawnInterval) {
+                        clearInterval(spawnInterval);
+                        spawnInterval = null;
+                    }
                     setTimeout(() => completeLevel(), 1000);
+                }
+            };
+            
+            // Add both click and touch support
+            heart.addEventListener('click', handleHeartClick);
+            heart.addEventListener('touchstart', handleHeartClick, { passive: true });
+            
+            heart.addEventListener('animationend', () => {
+                if (heart.parentNode === catchGame) {
+                    try {
+                        catchGame.removeChild(heart);
+                    } catch(e) {}
                 }
             });
             
-            heart.addEventListener('animationend', () => {
-                heart.remove();
-            });
-            
             catchGame.appendChild(heart);
-            heartsSpawned++;
         }
         
+        // Initial heart
+        createHeart();
+        
         // Spawn hearts every 800ms
-        const spawnInterval = setInterval(() => {
+        spawnInterval = setInterval(() => {
             if (heartsCaught >= level.targetHearts) {
                 clearInterval(spawnInterval);
+                spawnInterval = null;
                 return;
             }
             createHeart();
         }, 800);
-        
-        // Initial hearts
-        createHeart();
     }
 
     function setupBirthdayGame() {
