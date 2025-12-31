@@ -96,10 +96,12 @@ function initializeMusicPlayer() {
         window.globalAudioPlayer = new Audio();
         window.globalAudioPlayer.volume = 0.5;
         window.globalAudioPlayer.preload = 'auto';
+        window.globalAudioPlayer.loop = true; // putar berulang terus
         // Hapus pengaturan crossOrigin untuk sumber lokal
     }
 
     // Pastikan selectedSong valid, fallback ke "1"
+    window.globalAudioPlayer.loop = true;
     let songId = localStorage.getItem('selectedSong') || '1';
     if (!musicData[songId]) songId = '1';
     localStorage.setItem('selectedSong', songId);
@@ -114,11 +116,15 @@ function initializeMusicPlayer() {
     const url = musicData[songId];
     // Encode untuk keamanan path (spasi, karakter khusus) saat dihosting
     const encodedUrl = url ? encodeURI(url) : url;
-    if (encodedUrl && (savedUrl !== encodedUrl)) {
+    const shouldSetSource = !window.globalAudioPlayer.src || savedUrl !== encodedUrl;
+
+    if (encodedUrl && shouldSetSource) {
         window.globalAudioPlayer.src = encodedUrl;
         window.globalAudioPlayer.load();
         localStorage.setItem('musicUrl', encodedUrl);
+    }
 
+    if (encodedUrl) {
         if (savedCurrentTime && savedUrl === encodedUrl) {
             window.globalAudioPlayer.currentTime = parseFloat(savedCurrentTime);
         } else {
@@ -126,10 +132,20 @@ function initializeMusicPlayer() {
             localStorage.removeItem('musicCurrentTime');
         }
 
-        window.globalAudioPlayer.addEventListener('canplay', () => {
-            if (window.globalAudioPlayer && window.globalAudioPlayer.muted !== true) {
-                window.globalAudioPlayer.play().catch(() => {});
-            }
+        const tryPlay = () => {
+            if (!window.globalAudioPlayer || window.globalAudioPlayer.muted) return;
+            window.globalAudioPlayer.play().catch(() => {});
+        };
+
+        if (shouldSetSource) {
+            window.globalAudioPlayer.addEventListener('canplay', tryPlay, { once: true });
+        } else {
+            tryPlay();
+        }
+
+        // Pastikan pemutaran dimulai saat ada interaksi pengguna (untuk melewati blokir autoplay)
+        document.addEventListener('pointerdown', () => {
+            tryPlay();
         }, { once: true });
     }
 

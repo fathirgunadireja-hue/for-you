@@ -30,9 +30,11 @@
             align-items: center;
             justify-content: center;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
             color: #e9f0ff;
+            padding: 32px 18px 48px;
         }
 
         /* Animated background elements */
@@ -83,8 +85,8 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 600px;
-            padding: 40px;
+            max-width: min(90vw, 760px);
+            padding: 36px;
             animation: fadeInDown 0.8s ease;
         }
 
@@ -105,16 +107,20 @@
 
         .main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
+            font-size: 3.6rem;
             background: linear-gradient(135deg, #ffd3f4 0%, #b9c6ff 45%, #8fe1ff 85%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 800;
             margin-bottom: 18px;
-            letter-spacing: 2px;
-            line-height: 1.15;
+            letter-spacing: 1.8px;
+            line-height: 1.05;
             text-shadow: 0 8px 35px rgba(255, 255, 255, 0.08);
+        }
+
+        .main-title span {
+            display: block;
         }
 
         .subtitle {
@@ -142,14 +148,16 @@
         .countdown-container {
             background: rgba(255, 255, 255, 0.96);
             border-radius: 28px;
-            padding: 48px 38px;
+            padding: 44px 34px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-            margin-bottom: 42px;
+            margin: 0 auto 42px;
             border: 2px solid rgba(185, 198, 255, 0.28);
             position: relative;
             overflow: hidden;
             animation: slideUp 0.8s ease 0.2s both;
             backdrop-filter: blur(6px);
+            width: 100%;
+            max-width: 540px;
         }
 
         @keyframes slideUp {
@@ -351,6 +359,14 @@
         }
 
         /* Fireworks Effect */
+        #fireworksLayer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+            overflow: hidden;
+        }
+
         .firework {
             position: fixed;
             pointer-events: none;
@@ -380,6 +396,7 @@
         @media (max-width: 768px) {
             .container {
                 padding: 18px;
+                max-width: 94vw;
             }
 
             .main-title {
@@ -398,8 +415,9 @@
             }
 
             .countdown-container {
-                padding: 32px 22px;
+                padding: 30px 20px;
                 margin-bottom: 28px;
+                max-width: 520px;
             }
 
             .countdown-timer {
@@ -438,6 +456,11 @@
                 font-size: 1rem;
             }
 
+            .countdown-container {
+                max-width: 500px;
+                padding: 26px 18px;
+            }
+
             .countdown-timer {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
@@ -465,10 +488,14 @@
 </head>
 <body>
     <div class="bg-animation" id="bgAnimation"></div>
+    <div id="fireworksLayer" aria-hidden="true"></div>
 
     <div class="container">
         <div class="header">
-            <h1 class="main-title">Happy New Year!! Siti Hajar Almakki</h1>
+            <h1 class="main-title">
+                <span>Happy New Year!!</span>
+                <span>Siti Hajar Almakki</span>
+            </h1>
             <p class="subtitle">Welcome to January 2026, this is your birthday month, it’s just a matter of time now.. </p>
         </div>
 
@@ -510,11 +537,15 @@
         </div>
     </div>
 
+    <script src="shared.js"></script>
     <script>
+        // Paksa lagu default halaman ini
+        localStorage.setItem('selectedSong', '1');
+
         // Fireworks Effect Class
         class Fireworks {
             constructor() {
-                this.container = document.body;
+                this.container = document.getElementById('fireworksLayer') || document.body;
                 this.colors = ['#ff6b9d', '#b388ff', '#7bc6ff', '#ffd166', '#ff3366', '#00d4ff', '#ff00ff', '#ffff00'];
             }
 
@@ -570,9 +601,17 @@
 
         const fireworks = new Fireworks();
 
+        const burstOnPointer = (event) => {
+            const point = event.touches && event.touches[0] ? event.touches[0] : event;
+            fireworks.burst(point.clientX, point.clientY, 7);
+        };
+
+        document.addEventListener('click', burstOnPointer);
+        document.addEventListener('touchstart', burstOnPointer, { passive: true });
+
         // Trigger fireworks randomly throughout the page load
         setTimeout(() => {
-            fireworks.randomFireworks(4000);
+            fireworks.randomFireworks(2500);
         }, 500);
 
         // Generate floating emojis
