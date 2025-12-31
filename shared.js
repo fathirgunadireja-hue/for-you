@@ -94,7 +94,7 @@ function initializeMusicPlayer() {
     // Buat audio player
     if (!window.globalAudioPlayer) {
         window.globalAudioPlayer = new Audio();
-        window.globalAudioPlayer.volume = 0.5;
+        window.globalAudioPlayer.volume = 0.18; // lebih pelan sebagai background
         window.globalAudioPlayer.preload = 'auto';
         window.globalAudioPlayer.loop = true; // putar berulang terus
         window.globalAudioPlayer.autoplay = true;
@@ -116,7 +116,7 @@ function initializeMusicPlayer() {
     window.globalAudioPlayer.muted = savedMuted === 'true';
     // Pastikan volume tidak nol
     if (window.globalAudioPlayer.volume === 0) {
-        window.globalAudioPlayer.volume = 0.6;
+        window.globalAudioPlayer.volume = 0.2;
     }
 
     // Set sumber sederhana ke file lokal
@@ -142,7 +142,7 @@ function initializeMusicPlayer() {
         const tryPlay = () => {
             if (!window.globalAudioPlayer) return;
             window.globalAudioPlayer.muted = false;
-            if (window.globalAudioPlayer.volume === 0) window.globalAudioPlayer.volume = 0.6;
+            if (window.globalAudioPlayer.volume === 0) window.globalAudioPlayer.volume = 0.2;
             window.globalAudioPlayer.play().catch(() => {});
         };
 
@@ -155,7 +155,7 @@ function initializeMusicPlayer() {
         // Pastikan pemutaran dimulai saat ada interaksi pengguna (untuk melewati blokir autoplay)
         const unlockAudio = () => {
             window.globalAudioPlayer.muted = false;
-            if (window.globalAudioPlayer.volume === 0) window.globalAudioPlayer.volume = 0.6;
+            if (window.globalAudioPlayer.volume === 0) window.globalAudioPlayer.volume = 0.2;
             tryPlay();
         };
         document.addEventListener('pointerdown', unlockAudio, { once: true });

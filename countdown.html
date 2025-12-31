@@ -34,7 +34,7 @@
             overflow-y: auto;
             position: relative;
             color: #e9f0ff;
-            padding: 32px 18px 48px;
+            padding: 32px 18px 12px; /* kurangi padding bawah agar tidak ada strip kosong */
         }
 
         /* Animated background elements */
@@ -373,6 +373,33 @@
             z-index: 100;
         }
 
+        .firework-rocket {
+            position: fixed;
+            width: 7px;
+            height: 22px;
+            background: linear-gradient(180deg, #ffe1ff 0%, #ff6b9d 60%, #ffb3d6 100%);
+            border-radius: 4px 4px 2px 2px;
+            box-shadow: 0 0 12px rgba(255, 107, 157, 0.8);
+            z-index: 90;
+        }
+
+        .rocket-trail {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 224, 255, 0.95), rgba(255, 107, 157, 0.25));
+            filter: blur(1px);
+            opacity: 0.85;
+            animation: trail-fade 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes trail-fade {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(0.4); opacity: 0; }
+        }
+
         .firework-particle {
             position: absolute;
             width: 8px;
@@ -496,7 +523,7 @@
                 <span>Happy New Year</span>
                 <span>Siti Hajar Almakki</span>
             </h1>
-            <p class="subtitle">Welcome to January 2026, this is your birthday month, it’s just a matter of time now.. </p>
+            <p class="subtitle">Welcome to January 2026, this is your birthday month, it's only a matter of time now... </p>
         </div>
 
         <div class="countdown-container">
@@ -529,11 +556,11 @@
         <div class="button-container">
             <button class="countdown-button" id="enterButton" disabled>
                 <span class="button-text">
-                    <span>Enter Special Page</span>
+                    <span>Open Special Page</span>
                     <i class="fas fa-heart"></i>
                 </span>
             </button>
-            <p class="waiting-text" id="waitingText">⏳ Please wait until the time arrives...</p>
+            <p class="waiting-text" id="waitingText">⏳ Please wait until the countdown ends...</p>
         </div>
     </div>
 
@@ -542,11 +569,154 @@
         // Paksa lagu default halaman ini
         localStorage.setItem('selectedSong', '1');
 
+        // Audio Context untuk sound effects
+        let audioContext = null;
+        function getAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioContext;
+        }
+
+        // Suara roket meluncur (whoosh)
+        function playRocketLaunchSound() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+
+                const noise = ctx.createBufferSource();
+                const bufferSize = ctx.sampleRate * 0.2;
+                const noiseData = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = noiseData.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+                }
+                noise.buffer = noiseData;
+
+                const filter = ctx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(800, now);
+                filter.Q.setValueAtTime(0.9, now);
+
+                const gain = ctx.createGain();
+                gain.gain.setValueAtTime(0.32, now);
+                gain.gain.exponentialRampToValueAtTime(0.04, now + 0.4);
+
+                noise.connect(filter);
+                filter.connect(gain);
+                gain.connect(ctx.destination);
+                noise.start(now);
+            } catch (e) { /* ignore */ }
+        }
+
+        // Suara ledakan petasan
+        function playExplosionSound() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+
+                // Crackle noise
+                const noise = ctx.createBufferSource();
+                const bufferSize = ctx.sampleRate * 0.35;
+                const noiseData = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = noiseData.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    const envelope = 1 - i / bufferSize;
+                    data[i] = (Math.random() * 2 - 1) * envelope;
+                }
+                noise.buffer = noiseData;
+
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.55, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.03, now + 0.42);
+
+                // Sub-bass thump
+                const osc = ctx.createOscillator();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(120, now);
+                osc.frequency.exponentialRampToValueAtTime(48, now + 0.25);
+
+                const oscGain = ctx.createGain();
+                oscGain.gain.setValueAtTime(0.42, now);
+                oscGain.gain.exponentialRampToValueAtTime(0.015, now + 0.38);
+
+                noise.connect(noiseGain);
+                noiseGain.connect(ctx.destination);
+
+                osc.connect(oscGain);
+                oscGain.connect(ctx.destination);
+
+                noise.start(now);
+                osc.start(now);
+                osc.stop(now + 0.35);
+            } catch (e) { /* ignore */ }
+        }
+
+        function playFirecrackerSound() {
+            playExplosionSound();
+        }
+
+        // Fungsi untuk burst suara petasan multiple (crackle pret-pret)
+        function playMultipleFirecrackers(count = 5) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    playExplosionSound();
+                }, i * 120);
+            }
+        }
+
         // Fireworks Effect Class
         class Fireworks {
             constructor() {
                 this.container = document.getElementById('fireworksLayer') || document.body;
                 this.colors = ['#ff6b9d', '#b388ff', '#7bc6ff', '#ffd166', '#ff3366', '#00d4ff', '#ff00ff', '#ffff00'];
+            }
+
+            launchAndBurst(targetX, targetY, count = 6) {
+                const startX = targetX ?? (Math.random() * window.innerWidth * 0.9 + window.innerWidth * 0.05);
+                const startY = window.innerHeight + 40;
+                const endY = targetY ?? (Math.random() * window.innerHeight * 0.5 + window.innerHeight * 0.1);
+
+                const rocket = document.createElement('div');
+                rocket.className = 'firework-rocket';
+                rocket.style.left = `${startX}px`;
+                rocket.style.top = `${startY}px`;
+                this.container.appendChild(rocket);
+
+                playRocketLaunchSound();
+
+                const duration = 800 + Math.random() * 250;
+                const startTime = performance.now();
+
+                const trailInterval = setInterval(() => {
+                    const trail = document.createElement('div');
+                    trail.className = 'rocket-trail';
+                    const rect = rocket.getBoundingClientRect();
+                    trail.style.left = `${rect.left - 4}px`;
+                    trail.style.top = `${rect.top + 12}px`;
+                    this.container.appendChild(trail);
+                    setTimeout(() => trail.remove(), 600);
+                }, 55);
+
+                const animate = (now) => {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const currentY = startY + (endY - startY) * eased;
+                    rocket.style.transform = `translateY(${currentY - startY}px)`;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        clearInterval(trailInterval);
+                        const rect = rocket.getBoundingClientRect();
+                        rocket.remove();
+                        playExplosionSound();
+                        setTimeout(() => playMultipleFirecrackers(Math.max(3, Math.floor(count / 2))), 100);
+                        this.burst(rect.left, rect.top, count);
+                    }
+                };
+
+                requestAnimationFrame(animate);
             }
 
             createFirework(x, y) {
@@ -578,6 +748,7 @@
             }
 
             burst(x, y, count = 5) {
+                playMultipleFirecrackers(count);
                 for (let i = 0; i < count; i++) {
                     setTimeout(() => {
                         this.createFirework(x, y);
@@ -601,9 +772,25 @@
 
         const fireworks = new Fireworks();
 
+        function startAutoFireworks() {
+            // burst waves
+            setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * (window.innerHeight * 0.6);
+                fireworks.launchAndBurst(x, y, 6 + Math.floor(Math.random() * 4));
+            }, 2800);
+
+            // occasional single rockets
+            setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * (window.innerHeight * 0.5 + window.innerHeight * 0.1);
+                fireworks.launchAndBurst(x, y, 5);
+            }, 4200);
+        }
+
         const burstOnPointer = (event) => {
             const point = event.touches && event.touches[0] ? event.touches[0] : event;
-            fireworks.burst(point.clientX, point.clientY, 7);
+            fireworks.launchAndBurst(point.clientX, point.clientY, 7);
         };
 
         document.addEventListener('click', burstOnPointer);
@@ -613,6 +800,9 @@
         setTimeout(() => {
             fireworks.randomFireworks(2500);
         }, 500);
+
+        // Mulai auto-fireworks periodik
+        setTimeout(() => startAutoFireworks(), 1200);
 
         // Generate floating emojis
         const emojis = ['✨', '🌟', '⭐'];
@@ -673,7 +863,7 @@
                     setTimeout(() => {
                         const x = Math.random() * window.innerWidth;
                         const y = Math.random() * (window.innerHeight * 0.7);
-                        fireworks.burst(x, y, 8);
+                        fireworks.launchAndBurst(x, y, 8);
                     }, i * 150);
                 }
                 
