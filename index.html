@@ -6,6 +6,37 @@
     <title>Siti Hajar Almakki!❤️</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Foto kue ulang tahun bulat */
+        .cake-photo,
+        .gallery-cake-photo,
+        .birthday-cake-photo {
+            border-radius: 50%;
+            object-fit: cover;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .cake-photo {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .gallery-cake-photo {
+            width: 140px;
+            height: 140px;
+        }
+        
+        .birthday-cake-photo {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .memory-card-back .cake-photo {
+            width: 70px;
+            height: 70px;
+        }
+    </style>
 </head>
 <body>
     <!-- MUSIC PLAYER -->
@@ -527,6 +558,12 @@
         const deleteBtn = document.getElementById('deleteBtn');
         const numButtons = document.querySelectorAll('.password-num-btn');
         const passwordContainer = document.getElementById('passwordContainer');
+        
+        // Cek apakah sudah pernah login
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            passwordContainer.classList.add('hidden');
+            passwordContainer.style.display = 'none';
+        }
 
         // Tambah background animation emoji
         const emojis = ['💖', '🎂', '🎉', '🌟', '💕', '🎁', '✨', '💌'];
@@ -613,6 +650,9 @@
                 passwordMessage.classList.remove('error');
                 passwordMessage.textContent = '✅ Berhasil! Selamat datang...';
                 passwordMessage.style.color = '#28a745';
+                
+                // Simpan status login
+                localStorage.setItem('isLoggedIn', 'true');
                 
                 playSuccessSound();
                 

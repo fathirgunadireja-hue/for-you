@@ -863,13 +863,14 @@ a {
 /* ===== HOMEPAGE SPECIFIC ===== */
 .homepage-container {
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
+    padding: 120px 20px 140px 20px;
 }
 
 .stars {

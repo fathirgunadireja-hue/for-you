@@ -517,7 +517,7 @@ function initGalleryPage() {
             id: 3,
             title: "Perayaan Ulang Tahun Pertama",
             date: "12 Desember 2021",
-            emoji: "🎂",
+            emoji: "<img src='foto/almakki.jpeg' class='gallery-cake-photo'>",
             description: "Kue pertama yang kita rayakan bersama. Setiap lilin yang aku tiup adalah doa untuk kita bisa selamanya bersama."
         },
         {
@@ -637,7 +637,7 @@ function initGamePage() {
                 type: "memory",
                 pairs: [
                     { id: 1, emoji: "🥰" },
-                    { id: 2, emoji: "🎂" },
+                    { id: 2, emoji: "<img src='foto/almakki.jpeg' class='cake-photo'>" },
                     { id: 3, emoji: "💕" },
                     { id: 4, emoji: "✨" }
                 ]
@@ -1033,18 +1033,16 @@ function initGamePage() {
 
                         <div class="cake-container" style="position: relative;">
                             <div class="romantic-decor">
-                                <span class="romantic-emoji" style="top: 5%; left: 8%; animation-delay: 0s;">💕</span>
-                                <span class="romantic-emoji" style="top: 12%; right: 10%; animation-delay: 0.3s;">✨</span>
-                                <span class="romantic-emoji" style="top: 35%; left: 5%; animation-delay: 0.6s;">🎀</span>
-                                <span class="romantic-emoji" style="top: 28%; right: 6%; animation-delay: 0.9s;">💖</span>
-                                <span class="romantic-emoji" style="top: 60%; left: 12%; animation-delay: 0.4s;">🌹</span>
-                                <span class="romantic-emoji" style="top: 58%; right: 8%; animation-delay: 0.7s;">💐</span>
-                                <span class="romantic-emoji" style="bottom: 10%; left: 15%; animation-delay: 0.2s;">💝</span>
-                                <span class="romantic-emoji" style="bottom: 12%; right: 10%; animation-delay: 0.8s;">✨</span>
-                                <span class="romantic-emoji" style="top: 20%; left: 18%; animation-delay: 0.5s;">💗</span>
-                                <span class="romantic-emoji" style="top: 50%; right: 15%; animation-delay: 1s;">🎀</span>
+                                <span class="romantic-emoji" style="top: 5%; left: -15%; animation-delay: 0s;">💖</span>
+                                <span class="romantic-emoji" style="top: 10%; right: -15%; animation-delay: 0.3s;">✨</span>
+                                <span class="romantic-emoji" style="top: 25%; left: -20%; animation-delay: 0.6s;">💕</span>
+                                <span class="romantic-emoji" style="top: 30%; right: -18%; animation-delay: 0.9s;">⭐</span>
+                                <span class="romantic-emoji" style="top: 50%; left: -22%; animation-delay: 0.4s;">💝</span>
+                                <span class="romantic-emoji" style="top: 55%; right: -20%; animation-delay: 0.7s;">✨</span>
+                                <span class="romantic-emoji" style="bottom: 15%; left: -18%; animation-delay: 0.2s;">💗</span>
+                                <span class="romantic-emoji" style="bottom: 10%; right: -16%; animation-delay: 0.8s;">💖</span>
                             </div>
-                            <div class="cake-emoji">🎂</div>
+                            <div class="cake-emoji"><img src="foto/almakki.jpeg" class="birthday-cake-photo"></div>
                         </div>
                     </div>
                     
@@ -1169,6 +1167,8 @@ function initGamePage() {
         let heartsCaught = 0;
         let heartsSpawned = 0;
         
+        if (!catchGame || !heartsCaughtDisplay) return;
+        
         function createHeart() {
             if (heartsCaught >= level.targetHearts) return;
             
@@ -1179,9 +1179,11 @@ function initGamePage() {
                 font-size: 2.5rem;
                 cursor: pointer;
                 animation: fall 3s linear;
-                left: ${Math.random() * 90}%;
+                left: ${Math.random() * 85}%;
                 top: -50px;
                 user-select: none;
+                z-index: 100;
+                pointer-events: auto;
             `;
             
             // CSS animation for falling
@@ -1197,11 +1199,13 @@ function initGamePage() {
                 document.head.appendChild(styleSheet);
             }
             
-            heart.addEventListener('click', () => {
+            heart.addEventListener('click', function(e) {
+                e.stopPropagation();
                 playGameSound('click');
                 heart.style.animation = 'none';
                 heart.style.transform = 'scale(1.5)';
                 heart.style.opacity = '0';
+                heart.style.transition = 'all 0.3s ease';
                 
                 heartsCaught++;
                 heartsCaughtDisplay.textContent = `${heartsCaught}/${level.targetHearts}`;
@@ -1210,6 +1214,7 @@ function initGamePage() {
                 setTimeout(() => heart.remove(), 300);
                 
                 if (heartsCaught >= level.targetHearts) {
+                    clearInterval(spawnInterval);
                     setTimeout(() => completeLevel(), 1000);
                 }
             });
