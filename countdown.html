@@ -19,12 +19,25 @@
             width: 100%;
         }
 
-        body {
-            background:
-                radial-gradient(circle at 20% 20%, rgba(120, 150, 255, 0.18), transparent 32%),
+        :root {
+            --bg-gradient: radial-gradient(circle at 20% 20%, rgba(120, 150, 255, 0.18), transparent 32%),
                 radial-gradient(circle at 78% 14%, rgba(255, 140, 200, 0.18), transparent 32%),
                 radial-gradient(circle at 62% 78%, rgba(110, 210, 255, 0.14), transparent 30%),
                 linear-gradient(180deg, #040714 0%, #0a1230 52%, #02040f 100%);
+        }
+
+        html {
+            background: var(--bg-gradient);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             align-items: center;
