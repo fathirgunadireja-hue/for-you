@@ -753,6 +753,24 @@
             initializeMusicPlayer();
         }, 500);
 
+        // Handle mobile autoplay restriction - play music on first user interaction
+        const unlockAudioOnMobile = () => {
+            if (window.globalAudioPlayer && window.globalAudioPlayer.paused) {
+                window.globalAudioPlayer.muted = false;
+                window.globalAudioPlayer.volume = 0.18;
+                window.globalAudioPlayer.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                });
+            }
+            // Remove listeners after first interaction
+            document.removeEventListener('click', unlockAudioOnMobile);
+            document.removeEventListener('tap', unlockAudioOnMobile);
+            document.removeEventListener('touchstart', unlockAudioOnMobile);
+        };
+
+        document.addEventListener('click', unlockAudioOnMobile, { once: true });
+        document.addEventListener('touchstart', unlockAudioOnMobile, { once: true, passive: true });
+
         // Audio Context untuk sound effects (tapi tidak digunakan)
         let audioContext = null;
         function getAudioContext() {
