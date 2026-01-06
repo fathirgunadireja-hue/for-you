@@ -36,6 +36,8 @@
 html, body {
     height: 100%;
     width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 html {
@@ -520,8 +522,8 @@ a {
         position: fixed;
         top: 0;
         right: 0;
-        width: 75vw;
-        max-width: 300px;
+        width: 60vw;
+        max-width: 250px;
         height: 100vh;
         background: rgba(15, 25, 50, 0.95);
         flex-direction: column;
@@ -1155,10 +1157,10 @@ a {
     }
 
     .navbar-menu {
-        width: 85vw;
-        max-width: 280px;
-        padding: 50px 15px 20px;
-        gap: 8px;
+        width: 70vw;
+        max-width: 220px;
+        padding: 50px 12px 20px;
+        gap: 6px;
     }
     
     .navbar-menu a {
@@ -1168,7 +1170,8 @@ a {
 
     .container {
         padding: 20px 10px 80px 10px;
-        max-width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
     
     .main-title {
@@ -1504,19 +1507,32 @@ a {
     }
     
     .timeline {
-        padding: 15px 0;
+        padding: 15px 10px;
     }
     
     .timeline-item {
-        padding: 10px 0 10px 12px;
-        border-left: 2px solid rgba(120, 150, 255, 0.6);
-        margin-bottom: 18px;
+        padding: 0;
+        border-left: none;
+        margin-bottom: 20px;
+        position: relative;
     }
     
     .timeline-dot {
-        width: 10px;
-        height: 10px;
-        left: -6px;
+        display: none;
+    }
+
+    .timeline-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    .timeline-date {
+        margin-bottom: 8px;
+        display: block;
     }
     
     .timeline-date {
@@ -1539,6 +1555,12 @@ a {
     .timeline-text {
         font-size: 0.78rem;
         line-height: 1.5;
+    }
+
+    .timeline-content {
+        max-width: calc(100vw - 90px);
+        padding: 15px;
+        border-radius: 12px;
     }
     
     .journey-section {
@@ -1780,18 +1802,32 @@ a {
     }
     
     .timeline {
-        padding: 20px 0;
+        padding: 20px 10px;
     }
     
     .timeline-item {
-        padding: 12px 0 12px 15px;
-        border-left: 3px solid rgba(120, 150, 255, 0.6);
+        padding: 0;
+        border-left: none;
+        margin-bottom: 20px;
+        position: relative;
     }
     
     .timeline-dot {
-        width: 12px;
-        height: 12px;
-        left: -8px;
+        display: none;
+    }
+
+    .timeline-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    .timeline-date {
+        margin-bottom: 8px;
+        display: block;
     }
     
     .timeline-date {
@@ -1814,6 +1850,12 @@ a {
     .timeline-text {
         font-size: 0.8rem;
         line-height: 1.4;
+    }
+
+    .timeline-content {
+        max-width: calc(100vw - 100px);
+        padding: 18px 15px;
+        border-radius: 15px;
     }
     
     .journey-section {
@@ -2798,23 +2840,63 @@ a {
         bottom: 10px;
         right: 10px;
         left: 10px;
-        max-width: unset;
+        max-width: calc(100vw - 20px);
+        padding: 8px;
+    }
+
+    .music-header {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .music-header i {
+        font-size: 1rem;
     }
 
     .music-options {
-        flex-direction: row;
-        gap: 6px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+        margin-bottom: 8px;
     }
 
     .music-btn {
-        flex: 1;
         flex-direction: column;
-        padding: 8px;
-        font-size: 0.7rem;
+        padding: 6px 4px;
+        font-size: 0.65rem;
+        text-align: center;
+        gap: 4px;
+    }
+
+    .music-btn i {
+        font-size: 1rem;
+        margin-bottom: 2px;
     }
 
     .music-info {
         text-align: center;
+    }
+
+    .music-name {
+        font-size: 0.65rem;
+        line-height: 1.1;
+    }
+
+    .music-controls {
+        gap: 6px;
+    }
+
+    .music-control-btn {
+        padding: 4px;
+        font-size: 0.8rem;
+    }
+
+    .music-time {
+        font-size: 0.65rem;
+    }
+
+    .music-progress {
+        height: 4px;
     }
 
     .password-box {
@@ -3948,6 +4030,16 @@ a {
 
     .gallery-item {
         height: 220px;
+    }
+
+    .container {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .homepage-container {
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .gallery-item-overlay h3 {
