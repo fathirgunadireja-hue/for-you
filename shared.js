@@ -288,8 +288,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to remove black background from sticker images
 function removeBackgroundFromStickers() {
     const stickers = [
-        { canvas: 'stickerCanvas1', img: 'foto/hajarstiker/hajarlucu2.jpeg' },
-        { canvas: 'stickerCanvas2', img: 'foto/hajarstiker/hajarlucu1.jpeg' }
+        { canvas: 'stickerCanvas1', img: 'foto/hajarstiker/hajarlucu1.jpeg' },
+        { canvas: 'stickerCanvas2', img: 'foto/hajarstiker/hajarlucu1.jpeg' },
+        { canvas: 'messagesStickerCanvas1', img: 'foto/hajarstiker/hajarlucu1.jpeg' },
+        { canvas: 'messagesStickerCanvas2', img: 'foto/hajarstiker/hajarlucu1.jpeg' }
     ];
     
     stickers.forEach(sticker => {
@@ -668,32 +670,56 @@ function initGalleryPage() {
 }
 
 function initMessagesPage() {
+    // Load stickers for messages section
+    removeBackgroundFromStickers();
+    
     // Animate text words from left and right
     const animatedTexts = document.querySelectorAll('.animated-text');
     
     animatedTexts.forEach(textElement => {
-        const text = textElement.textContent;
-        textElement.innerHTML = '';
+        const paragraphs = Array.from(textElement.querySelectorAll('p'));
         
-        // Split text into words (preserve spaces and punctuation)
-        const words = text.split(/(\s+)/);
-        let delay = 0;
-        
-        words.forEach((word, index) => {
-            if (word.trim()) {
-                const span = document.createElement('span');
-                span.className = 'word';
-                span.textContent = word;
-                span.style.animationDelay = (delay * 0.15) + 's';
-                textElement.appendChild(span);
-                delay++;
-            } else if (word === ' ') {
-                // Add space node
-                const space = document.createElement('span');
-                space.textContent = word;
-                space.style.marginRight = '0';
-                textElement.appendChild(space);
-            }
+        // If no paragraphs inside, fallback to original text handling
+        if (!paragraphs.length) {
+            const text = textElement.textContent;
+            textElement.innerHTML = '';
+            const words = text.split(/(\s+)/);
+            let delay = 0;
+            words.forEach(word => {
+                if (word.trim()) {
+                    const span = document.createElement('span');
+                    span.className = 'word';
+                    span.textContent = word;
+                    span.style.animationDelay = (delay * 0.15) + 's';
+                    textElement.appendChild(span);
+                    delay++;
+                } else if (word === ' ') {
+                    const space = document.createElement('span');
+                    space.textContent = ' ';
+                    space.style.marginRight = '0';
+                    textElement.appendChild(space);
+                }
+            });
+            return;
+        }
+
+        // Animate per paragraph while keeping spacing
+        paragraphs.forEach((p, pIndex) => {
+            const text = p.textContent;
+            p.innerHTML = '';
+            const words = text.split(/(\s+)/);
+            words.forEach((word, wIndex) => {
+                if (word.trim()) {
+                    const span = document.createElement('span');
+                    span.className = 'word';
+                    span.textContent = word;
+                    const delay = (pIndex * 10 + wIndex) * 0.08; // faster, smoother animation
+                    span.style.animationDelay = delay + 's';
+                    p.appendChild(span);
+                } else if (word === ' ') {
+                    p.appendChild(document.createTextNode(' '));
+                }
+            });
         });
     });
     
@@ -737,9 +763,31 @@ function initGamePage() {
                 icon: "❓",
                 type: "quiz",
                 questions: [
-                    { question: "Warna favoritku?", options: ["Pink", "Biru", "Hijau", "Ungu"], correct: 0 },
-                    { question: "Makanan favorit?", options: ["Sushi", "Pizza", "Ice Cream", "Rendang"], correct: 2 },
-                    { question: "Dimana kita pertama ketemu?", options: ["Kafe", "Kampus", "Taman", "Konser"], correct: 1 }
+                    { 
+                        question: "Dimana pertama kali kamu ngeliat aku?", 
+                        options: ["Taman Heulang", "Gymnasium SV", "Perpustakaan", "Kantin"], 
+                        correct: 1 
+                    },
+                    { 
+                        question: "Kapan pertama kali aku dm kamu?", 
+                        options: ["15 September 2025", "1 Oktober 2025", "20 Oktober 2025", "5 November 2025"], 
+                        correct: 1 
+                    },
+                    { 
+                        question: "Siapa nama rektor IPB yang baru?", 
+                        options: ["Prof. Dr. Arif Satria", "Dr. Alim Setiawan Slamet, S.TP., M.Si.", "Dr. Ir. Herry Suhardiyanto", "Prof. Dr. Yonny Koesmaryono"], 
+                        correct: 1 
+                    },
+                    { 
+                        question: "Taman apa yang pertama kali kita datangin?", 
+                        options: ["Taman Kencana", "Taman Heulang", "Taman Ekspresi", "Taman Ade Irma"], 
+                        correct: 0 
+                    },
+                    { 
+                        question: "Siapa yang hari ini lagi ulang tahun?", 
+                        options: ["Fathir Gunadireja", "Siti Hajar Almakki", "Keduanya", "Tidak ada"], 
+                        correct: 1 
+                    }
                 ]
             },
             {

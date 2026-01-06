@@ -181,24 +181,26 @@
         </div>
         
         <div class="homepage-content">
-            <h1 class="main-title">halloo Siti Hajar Almakki! 👋</h1>
-            <p class="subtitle">website ini spesial tauu, karena isinya tentang kamuu...</p>
+            <h1 class="main-title enhanced-title">
+                <span class="title-word">Selamat Datang</span>
+                <span class="title-word highlight">Siti Hajar Almakki!!</span>
+            </h1>
             
             <div class="nav-buttons">
                 <a href="#/game.html" class="nav-card">
                     <div class="nav-card-icon">🎮</div>
-                    <div class="nav-card-title">Mainkan Game</div>
+                    <div class="nav-card-title">Games</div>
                 </a>
 
                 <a href="#/gallery.html" class="nav-card locked-card" data-requires-level="4">
                     <div class="nav-card-icon">📸</div>
-                    <div class="nav-card-title">Galeri Kita</div>
+                    <div class="nav-card-title">Galeri</div>
                     <div class="lock-overlay">🔒</div>
                 </a>
 
                 <a href="#/messages.html" class="nav-card locked-card" data-requires-level="4">
                     <div class="nav-card-icon">💌</div>
-                    <div class="nav-card-title">Pesan Cinta</div>
+                    <div class="nav-card-title">Pesan</div>
                     <div class="lock-overlay">🔒</div>
                 </a>
 
@@ -322,8 +324,7 @@
         <div class="stars" id="galleryStars"></div>
         <canvas id="galleryCanvas" class="gallery-confetti"></canvas>
         <div class="container">
-            <h1 class="page-title">📸 Galeri Kenangan Kita 📸</h1>
-            <p class="page-subtitle">Setiap momen dengan kamu adalah kenangan berharga 💕</p>
+            <h1 class="page-title birthday-title-animated">Happy Birthday My Favorit Person </h1>
             
             <div class="gallery-grid">
                 <div class="gallery-item frame-style-1" data-id="1" data-image="foto/hajar/hajar1.jpeg" data-title="Momen Indah #1">
@@ -390,12 +391,6 @@
                     <img src="foto/hajar/hajar11.jpeg" alt="Momen Indah #11">
                     <div class="gallery-item-overlay">
                         <h3>Momen Indah #11</h3>
-                    </div>
-                </div>
-                <div class="gallery-item frame-style-4" data-id="12" data-image="foto/hajar/hajar12.jpeg" data-title="Momen Indah #12">
-                    <img src="foto/hajar/hajar6.jpeg" alt="Momen Indah #12">
-                    <div class="gallery-item-overlay">
-                        <h3>Momen Indah #12</h3>
                     </div>
                 </div>
                 <div class="gallery-item frame-style-1" data-id="13" data-image="foto/hajar/hajar13.jpeg" data-title="Momen Indah #13">
@@ -465,9 +460,39 @@
                     </div>
                 </div>
                 <div class="gallery-item frame-style-4" data-id="24" data-image="foto/hajar/hajar24.jpeg" data-title="Momen Indah #24">
-                    <img src="foto/hajar/hajar3.jpeg" alt="Momen Indah #24">
+                    <img src="foto/hajar/hajar24.jpeg" alt="Momen Indah #24">
                     <div class="gallery-item-overlay">
                         <h3>Momen Indah #24</h3>
+                    </div>
+                </div>
+                <div class="gallery-item frame-style-1" data-id="25" data-image="foto/hajar/hajar25.jpeg" data-title="Momen Indah #25">
+                    <img src="foto/hajar/hajar25.jpeg" alt="Momen Indah #25">
+                    <div class="gallery-item-overlay">
+                        <h3>Momen Indah #25</h3>
+                    </div>
+                </div>
+                <div class="gallery-item frame-style-2" data-id="26" data-image="foto/hajar/hajar26.jpeg" data-title="Momen Indah #26">
+                    <img src="foto/hajar/hajar26.jpeg" alt="Momen Indah #26">
+                    <div class="gallery-item-overlay">
+                        <h3>Momen Indah #26</h3>
+                    </div>
+                </div>
+                <div class="gallery-item frame-style-3" data-id="27" data-image="foto/hajar/hajar27.jpeg" data-title="Momen Indah #27">
+                    <img src="foto/hajar/hajar27.jpeg" alt="Momen Indah #27">
+                    <div class="gallery-item-overlay">
+                        <h3>Momen Indah #27</h3>
+                    </div>
+                </div>
+                <div class="gallery-item frame-style-4" data-id="28" data-image="foto/hajar/hajar28.jpeg" data-title="Momen Indah #28">
+                    <img src="foto/hajar/hajar28.jpeg" alt="Momen Indah #28">
+                    <div class="gallery-item-overlay">
+                        <h3>Momen Indah #28</h3>
+                    </div>
+                </div>
+                <div class="gallery-item frame-style-1" data-id="29" data-image="foto/hajar/hajar29.jpeg" data-title="Momen Indah #29">
+                    <img src="foto/hajar/hajar29.jpeg" alt="Momen Indah #29">
+                    <div class="gallery-item-overlay">
+                        <h3>Momen Indah #29</h3>
                     </div>
                 </div>
             </div>
@@ -482,33 +507,39 @@
     <section id="messages-section" class="page-section">
         <div class="password-background-animation" id="messagesBackgroundAnimation"></div>
         <div class="stars" id="messagesStars"></div>
+        
+        <!-- LEFT STICKER -->
+        <div class="sticker sticker-left">
+            <canvas id="messagesStickerCanvas1" class="sticker-canvas"></canvas>
+        </div>
+        
+        <!-- RIGHT STICKER -->
+        <div class="sticker sticker-right">
+            <canvas id="messagesStickerCanvas2" class="sticker-canvas"></canvas>
+        </div>
+        
         <div class="container">
-            <h1 class="page-title">💌 Love Notes dari Aku 💌</h1>
             <!-- Messages Container -->
             <div class="messages-container">
                 <div class="message-card">
                     <div class="message-header">
-                        <div class="message-icon">❤️</div>
+                       
                         <div>
-                            <h3 class="message-title">Aku Cinta Kamu Karena... 🤷‍♀️</h3>
-                            <p class="message-time">Ditulis sambil tersenyum menyebalkan</p>
+                            <p class="message-time">Fathir Gunadireja.</p>
                         </div>
                     </div>
                     <div class="message-content animated-text">
-                        "Aku cinta kamu karena cara kamu melihatku seperti aku ini istimewa, padahal kamu lebih istimewa. Aku cinta kamu karena kamu bikin aku tertawa sampai pelupuk mata aku ngilu. Tapi yang paling bikin aku cinta adalah... karena kamu itu kamu, dan tidak ada yang bisa mengganti itu. Point blank! 💋"
-                    </div>
-                </div>
-                
-                <div class="message-card special-message">
-                    <div class="message-header">
-                        <div class="message-icon">🎉</div>
-                        <div>
-                            <h3 class="message-title">Selamat Ulang Tahun Sayang! 🎂✨</h3>
-                            <p class="message-time">Spesial untuk hari spesialmu</p>
-                        </div>
-                    </div>
-                    <div class="message-content animated-text">
-                        "SELAMAT ULANG TAHUN CANTIK/GANTENG! 🎉🎂✨ Hari ini bukan hanya hari istimewa buat kamu, tapi juga buat aku karena aku mendapat privilege untuk merayakan hari istimewa ini bersama dengan orang yang paling aku cinta. Aku harap hari ini kamu tersenyum sepuasnya, ketawa sampe perut sakit, dan merasakan kebahagiaan yang setinggi langit. Kamu layak mendapatkan semuanya yang terbaik. Aku cinta kamu, sekarang dan selamanya. Selamat menulis halaman baru dalam kisah hidup kita! 💕🎊"
+                        <p>haii kamuu, Siti Hajar Almakki, selamat bertambah usia yaa. 🖤</p>
+
+                        <p>engga kerasa yaa waktu berjalan, dari lahirnya kamu di 7 Januari 2007 sampai saat ini 7 Januari 2026, udahh 19 tahun kamu jalan sejauh ini, pastinyaa banyak hal yang kamu lewatin, hal hal yang mungkin engga selalu terlihat dan tersampaikan, tapi pelan pelan ngebentuk kamu jadi versi yang terbaik seperti sekarang.</p>
+
+                        <p>19 tahun yang pastinya berharga, yang isinya belajar berdiri lagi setiap kali jatuh, belajar nerima kegagalan tanpa berhenti berharap. kamu pernah gagal di SNBP, gagal di SNBT, dan itu pasti berat. tapi kamu engga berhenti. kamu tetap nyoba, sampai akhirnya sekarang kamu ada di IPB. titik yang dulu mungkin cuma kamu simpan dalam doa atau mungkin bukan yang kamu mau, tapi sekarang kenyataannya bahwa kamu sekarang ada di IPB.</p>
+
+                        <p>ternyata aku lihat awal perjalanan kamu juga engga selalu mulus setelah itu yaa. belum rezeki lolos MUN, belum rezeki di BEM SV, aku pernah berfikir apa mungkin kamu sempat ragu sama diri sendiri. tapi hebatnya, kamu engga menjadikan itu alasan buat berhenti dan pada akhirnya sekarang kamu mendapatkan dermaga baru, untuk memulai perjalanan baru yaa di Medical Team. selamat memulai langkah baru, tanggung jawab baru, dan tantangan baru yaa, tenangg ada aku disamping kamu, depan kamu, belakang kamu!!</p>
+
+                        <p>semoga di usia 19 ini, semoga setiap langkah kamu ke depan dipenuhi dengan hal hal baik dan terbaik, pengalaman berharga, dan pelajaran yang bikin kamu makin kuat dan semakin lebih baik. semoga lelah kamu ada gantinya, dan semua usaha kamu, sekecil apa pun, engga ada yang sia sia.</p>
+
+                        <p>aku disini kagum dan bangga sama kamu, sama proses kamu, sama usaha kamu. sekali lagi selamat ulang tahun yaa geulis akuu. tetap jadi kamu yang hebat dan selalu bisa tumbuh lebih baik dari kamu sebelumnya. dan semoga aku hanyalah aku yang ada di hati kamu hehee, lovee!!🖤</p>
                     </div>
                 </div>
             </div>
@@ -520,31 +551,17 @@
         <div class="password-background-animation" id="timelineBackgroundAnimation"></div>
         <div class="stars" id="timelineStars"></div>
         <div class="container">
-            <h1 class="page-title">💕 Perjalanan Kita 💕</h1>
-            <p class="page-subtitle">Dari yang dulu sampai sekarang, setiap momen adalah spesial 📖✨</p>
 
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">
-                            <span class="timeline-month">Juni</span>
-                            <span class="timeline-year">2019</span>
-                        </div>
-                        <h3 class="timeline-title">Pertama Kali Ketemu</h3>
-                        <p class="timeline-text">Hari yang mengubah semuanya. Aku masih ingat bagaimana aku gugup bertemu denganmu untuk pertama kalinya. Matamu yang indah, senyumanmu yang lembut... semua terasa seperti takdir.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">
                             <span class="timeline-month">Agustus</span>
-                            <span class="timeline-year">2020</span>
+                            <span class="timeline-year">2025</span>
                         </div>
-                        <h3 class="timeline-title">Resmi Pacaran</h3>
-                        <p class="timeline-text">Akhirnya! Hari dimana kamu resmi menjadi milikku. Aku sangat bahagia dan tidak bisa berhenti tersenyum sepanjang hari. Kamu adalah impian yang jadi kenyataan.</p>
+                        <h3 class="timeline-title">Pertama Kali Ketemu nihh</h3>
+                        <p class="timeline-text">"Kak, boleh minta foto engga?" hal yang engga aku sangka ternyata ada yang ngajak foto kating tua ini dengan rompi gelembung dengan dasi biru itu ahaha,dan yap disini aku ketemu kamu  maba SJMP yang penuh dengan rasa ingin yau yang tinggi dengan nama Siti Hajar Almakki.</p>
                     </div>
                 </div>
 
@@ -552,11 +569,11 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">
-                            <span class="timeline-month">Desember</span>
-                            <span class="timeline-year">2021</span>
+                            <span class="timeline-month">Oktober</span>
+                            <span class="timeline-year">2025</span>
                         </div>
-                        <h3 class="timeline-title">Ulang Tahun Pertama Kita</h3>
-                        <p class="timeline-text">Kita merayakan 1 tahun bersama. Setiap hari denganmu terasa seperti pemberian yang luar biasa. Aku tidak sabar untuk menciptakan lebih banyak kenangan indah bersama.</p>
+                        <h3 class="timeline-title">Makin deket</h3>
+                        <p class="timeline-text">Setelah jeda satu bulan, dari awal ketemu kita di bulan agutus dan engga ada komunikasi lagi, akhirnya aku mencoba membangun komunikasi lagi dengan kamu, "assalamualaikum, maaf aku Fathir, sebelumnya kalo engga salah kamu yang pernah foto bareng di al ghifari ya setelah mpkmb?", kenapa aku keinget ini? soalnya beberapa kali di bulan september aku ngeliat kamu dijalan, dan keinget ternyata kamu, dari awal perckapan itu ternyata pembahasan kita hangat dan memanjang yaa, sehingga akhirnya di bulan oktober ini ada beberapa kali pertemuan, yang salah satu diantaranya aku memberika magsud dan tujuan aku untuk berkenalan lebih dalam dengan kamu hihi..</p>
                     </div>
                 </div>
 
@@ -564,11 +581,11 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-date">
-                            <span class="timeline-month">Februari</span>
-                            <span class="timeline-year">2023</span>
+                            <span class="timeline-month">November</span>
+                            <span class="timeline-year">2025</span>
                         </div>
-                        <h3 class="timeline-title">Petualangan Pertama Kita</h3>
-                        <p class="timeline-text">Liburan ke tempat yang indah, tapi yang paling indah adalah waktu yang aku habiskan bersamamu. Setiap sunset, setiap momen, semuanya jadi lebih bermakna.</p>
+                        <h3 class="timeline-title">Semakin dekat</h3>
+                        <p class="timeline-text">waktu terus berjalan, komunikasi terus dibangun dan di jaga, rasa hangat, dan rasa nyaman semakin ada dan terbentuk, cerita demi cerita aku denger, candaan yang saking terdengar, rasa perhatian dan peduli yang semakin terbentuk diantara kita,fun fact di bulan ini kita tutup pertemua di perpisahan rektor IPB bapak Arif Satria..</p>
                     </div>
                 </div>
 
@@ -579,17 +596,33 @@
                             <span class="timeline-month">Desember</span>
                             <span class="timeline-year">2025</span>
                         </div>
-                        <h3 class="timeline-title">Hari Istimewa Kamu</h3>
-                        <p class="timeline-text">Hari ini adalah hari yang akan aku ingat selamanya. Hari dimana kita merayakan kebahagiaan dan cinta yang telah kita bangun bersama. Terima kasih telah menjadi bagian terbaik dari hidupku. 🎂💕</p>
+                        <h3 class="timeline-title">Semakin makin</h3>
+                        <p class="timeline-text">Desember
+
+Awal bulan, sesuai rencana yang kita sepakatin, dengan  0 persiapan dengan rasa percaya dirinya kita ke puncak menembus angin dan dinginnya puncak di moment ini aku jadi keinget lirik lagu, "Jadi waktu itu dingin Kuberi kau hangat Walaupun ku juga beku Tapi ku aman saat kau nyaman", di bulan ini semakin makin banyak hal hal seru yang kita lakuinn, tapi sayangnya kita harus berpisah dulu nabung rasa kangen karena liburan semester...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            <span class="timeline-month">Januari</span>
+                            <span class="timeline-year">2025</span>
+                        </div>
+                        <h3 class="timeline-title">loveee</h3>
+                        <p class="timeline-text">Januari
+
+hmm menurut aku ini bulan setelah kita lewatin tantangan di akhir² bulan desember, abis kerasaa banget bumbu² emosionalnya, mulai dari ovt, rasa cemburu, rasa kesel, kangenn, campur aduk, tapi alhamdulillah di bulan ini perasaan tetap terjaga dan semakin bertembuh, dan yeyy akhirnya kita bakalan ketemu di hari Kamis, 8 Januari 2025, intinyaa sampai berjumpaa yaa geuliss aku!!!</p>
                     </div>
                 </div>
             </div>
 
             <div class="journey-section">
                 <div class="journey-emoji">🚀</div>
-                <h3 class="journey-title">Perjalanan Kita Belum Berakhir</h3>
+                <h3 class="journey-title">Perjalanan terus berlanjut</h3>
                 <p class="journey-text">
-                    Ini baru awal dari sebuah petualangan yang lebih besar. Ada banyak lagi halaman kosong di buku kisah kita yang menunggu untuk ditulis. Bersama kamu, aku yakin bahwa masa depan akan lebih indah dari apapun yang pernah aku bayangkan. Mari kita ciptakan lebih banyak kenangan, lebih banyak tawa, dan lebih banyak momen-momen berharga. Aku mencintaimu, sekarang dan selamanya. 💕✨
+                    Semoga selalu bersama seiring berjalannya waktu, semoga kamu tetap menjadi kamu yang aku kenal, begitun aku sebalinya dan semoga aku hanyalah aku untuk kamu,aamminn..
                 </p>
             </div>
         </div>
@@ -868,11 +901,10 @@
         <div class="warning-modal-content">
             <div class="warning-icon">😜</div>
             <h2 class="warning-title">Eitsss! Sabar dulu dong! 😤</h2>
-            <p class="warning-text">Kamu pikir bisa langsung lihat itu? <strong>Nggak segampang itu ferguso!</strong> 😏</p>
-            <p class="warning-text">Main game dulu sampe level 4 selesai! Jangan males! 🎮💪</p>
-            <p class="warning-subtext">(Iya, aku serius. Nggak ada shortcut! 😝)</p>
+            <p class="warning-text">Kamu pikir bisa langsung liat itu? <strong>engga segampang itu ferguso!</strong> 😏</p>
+            <p class="warning-text">Main game dulu sampe level 4 selesai yaa geuliss! gampang koo!! 🎮💪</p>
             <button class="warning-btn" id="closeWarningBtn">
-                <i class="fas fa-gamepad"></i> Oke deh, main dulu...
+                <i class="fas fa-gamepad"></i> Okee dehh gantengg, main duluu...
             </button>
         </div>
     </div>
@@ -937,6 +969,70 @@
         updateLockedCards();
         window.addEventListener('storage', updateLockedCards);
         setInterval(updateLockedCards, 500); // More frequent check for responsiveness
+
+        // ===== ANIMATE TEXT IN MESSAGE CARDS =====
+        function animateTextWords() {
+            const animatedTexts = document.querySelectorAll('.animated-text');
+            
+            animatedTexts.forEach(textElement => {
+                const paragraphs = Array.from(textElement.querySelectorAll('p'));
+                
+                // If no paragraphs inside, fallback to original text handling
+                if (!paragraphs.length) {
+                    const text = textElement.textContent;
+                    textElement.innerHTML = '';
+                    const words = text.split(/(\s+)/);
+                    let delay = 0;
+                    words.forEach(word => {
+                        if (word.trim()) {
+                            const span = document.createElement('span');
+                            span.className = 'word';
+                            span.textContent = word;
+                            span.style.animationDelay = (delay * 0.2) + 's';
+                            textElement.appendChild(span);
+                            delay++;
+                        } else if (word === ' ') {
+                            textElement.appendChild(document.createTextNode(' '));
+                        }
+                    });
+                    return;
+                }
+
+                // Animate per paragraph while keeping spacing
+                let cumulativeDelay = 0; // Track total delay across all paragraphs
+                
+                paragraphs.forEach((p, pIndex) => {
+                    const text = p.textContent;
+                    p.innerHTML = '';
+                    const words = text.split(/(\s+)/);
+                    let wordCount = 0;
+                    
+                    words.forEach((word, wIndex) => {
+                        if (word.trim()) {
+                            const span = document.createElement('span');
+                            span.className = 'word';
+                            span.textContent = word;
+                            const delay = cumulativeDelay + (wordCount * 0.7); // Very slow: 0.7s per word
+                            span.style.animationDelay = delay + 's';
+                            p.appendChild(span);
+                            wordCount++;
+                        } else if (word === ' ') {
+                            p.appendChild(document.createTextNode(' '));
+                        }
+                    });
+                    
+                    // Add delay for next paragraph (current paragraph's total time + gap)
+                    cumulativeDelay += (wordCount * 0.7) + 1.0; // 1s pause between paragraphs
+                });
+            });
+        }
+        
+        // Run animation after page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', animateTextWords);
+        } else {
+            animateTextWords();
+        }
     </script>
 </body>
 </html>
